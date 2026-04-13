@@ -1,26 +1,36 @@
-import { series } from './data.js';
-import { Serie } from './serie.js';
+import { series } from "./data";
+import { Serie } from "./serie";
 
-let seriesTable: HTMLElement = document.getElementById("series-body")!;
-let averageSeasonsText: HTMLElement = document.getElementById("average-seasons")!;
+const tableBody: HTMLElement | null = document.getElementById("series-table-body");
+const averageSeasonsElement: HTMLElement | null = document.getElementById("average-seasons");
 
-renderSeriesTable(series);
-averageSeasonsText.innerHTML = `Seasons average: ${getAverageSeasons(series)}`;
+function renderSeries(seriesList: Serie[]): void {
+  if (!tableBody) return;
 
-function renderSeriesTable(seriesList: Serie[]): void {
   seriesList.forEach((serie) => {
-    let trElement = document.createElement("tr");
-    trElement.innerHTML = `
-        <td><b>${serie.id}</b></td>
-        <td style="color: #007bff; cursor: pointer;">${serie.name}</td>
-        <td>${serie.channel}</td>
-        <td>${serie.seasons}</td>`;
-    seriesTable.appendChild(trElement);
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${serie.id}</td>
+      <td><a href="${serie.webPage}" target="_blank">${serie.name}</a></td>
+      <td>${serie.channel}</td>
+      <td>${serie.seasons}</td>
+    `;
+    tableBody.appendChild(row);
   });
 }
 
-function getAverageSeasons(seriesList: Serie[]): number {
-  let totalSeasons: number = 0;
-  seriesList.forEach((s) => totalSeasons += s.seasons);
-  return Math.round(totalSeasons / seriesList.length);
+function calculateAverageSeasons(seriesList: Serie[]): number {
+  let totalSeasons = 0;
+
+  seriesList.forEach((serie) => {
+    totalSeasons += serie.seasons;
+  });
+
+  return totalSeasons / seriesList.length;
+}
+
+renderSeries(series);
+
+if (averageSeasonsElement) {
+  averageSeasonsElement.innerHTML = `Seasons average: ${calculateAverageSeasons(series)}`;
 }
