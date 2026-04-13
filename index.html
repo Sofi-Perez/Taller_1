@@ -1,17 +1,35 @@
-<div class="container mt-4">
-    <table class="table table-striped">
-        <thead class="thead-light">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Channel</th>
-                <th>Seasons</th>
-            </tr>
-        </thead>
-        <tbody id="series-body">
-            </tbody>
-    </table>
-    <div class="mt-2">
-        <span id="average-seasons"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TV Series Hub</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body style="background-color: #f8f9fa;">
+    <nav class="navbar navbar-dark bg-info mb-4">
+        <span class="navbar-brand mb-0 h1">TV Series</span>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <table class="table table-striped table-bordered bg-white">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Channel</th>
+                            <th>Seasons</th>
+                        </tr>
+                    </thead>
+                    <tbody id="series-body">
+                        </tbody>
+                </table>
+                <p id="average-seasons" class="ml-2 font-weight-bold"></p>
+            </div>
+        </div>
     </div>
-</div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
